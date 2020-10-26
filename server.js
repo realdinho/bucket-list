@@ -6,6 +6,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const bucketListItemRoutes = require('./routes/api/bucketListItems')
+const path = require('path')
 
 // get environment variables
 dotenv.config({ path: './config.env' })
@@ -27,6 +28,12 @@ mongoose
   .catch((err) => console.log(err))
 
 app.use('/api/bucketListItems', bucketListItemRoutes)
-app.get('/', (req, res) => res.send('Hello world!'))
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/dist'))
+  app.use('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+  })
+}
 
 app.listen(process.env.PORT, () => console.log(`App listening at http://localhost:${process.env.PORT}`))
