@@ -36,4 +36,5 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.listen(process.env.PORT, () => console.log(`App listening at http://localhost:${process.env.PORT}`))
+const port = process.env.PORT || 3000
+app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
