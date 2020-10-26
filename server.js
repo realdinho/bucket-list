@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const bucketListItemRoutes = require('./routes/api/bucketListItems')
 
 // get environment variables
 dotenv.config({ path: './config.env' })
@@ -25,6 +26,7 @@ mongoose
   .then(() => console.log('MongoDB database connected...'))
   .catch((err) => console.log(err))
 
+app.use('/api/bucketListItems', bucketListItemRoutes)
 app.get('/', (req, res) => res.send('Hello world!'))
 
 app.listen(process.env.PORT, () => console.log(`App listening at http://localhost:${process.env.PORT}`))
