@@ -2,13 +2,13 @@
   "name": "realdiv.com",
   "version": "1.0.0",
   "description": "a web application using MEVN",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "server": "node server.js --ignore 'client/'",
+    "server": "nodemon server.js --ignore 'client/'",
     "client": "npm run serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "build": "npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
