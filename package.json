@@ -4,11 +4,10 @@
   "description": "a web application using MEVN",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js --ignore 'client/'",
+    "server": "node server.js --ignore 'client/'",
     "client": "npm run serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server.js",
-    "build": "npm install --prefix client && npm run build --prefix client",
     "heroku-postbuild": "cd client && NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "repository": {
