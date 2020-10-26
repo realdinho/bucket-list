@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
-const { PORT, mongoUri } = require('./config')
+// const { PORT, mongoUri } = require('./config')
 const cors = require('cors')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 
 // connect to database
 mongoose
-  .connect(mongoUri, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -37,4 +37,5 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`))
+const port = process.env.PORT || 3000
+app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
